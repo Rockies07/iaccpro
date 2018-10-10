@@ -1,0 +1,32 @@
+update employee set training_hour_1='0';
+update employee set training_hour_2='0';
+update employee set training_hour_1=(training_hour_1 + 40) where cssa_no!='';
+update employee set training_hour_1=(training_hour_1 + 38) where bcss_no!='';
+update employee set training_hour_1=(training_hour_1 + 15) where bcsst_no!='';
+update employee set training_hour_1=(training_hour_1 + 44) where cawc_no!='';
+update employee set training_hour_1=(training_hour_1 + 62) where cawcm_no!='';
+update employee set training_hour_1=(training_hour_1 + 32) where fscs_no!='';
+update employee set training_hour_1=(training_hour_1 + 32) where lssc_no!='';
+update employee set training_hour_1=(training_hour_1 + 30) where msac_no!='';
+update employee set training_hour_1=(training_hour_1 + 23.5) where ofac_no!='';
+update employee set training_hour_1=(training_hour_1 + 21) where swcso_no!='';
+update employee set training_hour_1=(training_hour_1 + 75) where mses_no!='';
+update employee set training_hour_1=(training_hour_1 + 32) where sussc_no!='';
+update employee set training_hour_1=(training_hour_1 + 8.5) where waha_no!='';
+update employee set training_hour_1=(training_hour_1 + 16) where wahs_no!='';
+update employee set training_hour_2=(training_hour_2 + 8) where epto_no!='';
+update employee set training_hour_2=(training_hour_2 + 7) where fscw_no!='';
+update employee set training_hour_2=(training_hour_2 + 37.5) where msec_no!='';
+update employee set training_hour_2=(training_hour_2 + 8) where mewp_no!='';
+update employee set training_hour_2=(training_hour_2 + 8) where mewps_no!='';
+update employee set training_hour_2=(training_hour_2 + 14) where pwcso_no!='';
+update employee set training_hour_2=(training_hour_2 + 16) where rc_no!='';
+update employee set training_hour_2=(training_hour_2 + 9) where sc_no!='';
+update employee set training_hour_2=(training_hour_2 + 24) where ssrc_no!='';
+update employee set training_hour_2=(training_hour_2 + 9) where wahw_no!='';
+
+select nts,prev_work_exp_year, prev_work_exp_month, FLOOR(TIMESTAMPDIFF(MONTH,start_work_date,CURDATE())/12) as year, TIMESTAMPDIFF(MONTH,start_work_date,CURDATE()) as month, (FLOOR(TIMESTAMPDIFF(MONTH,start_work_date,CURDATE())/12)+prev_work_exp_year+IF((MOD(TIMESTAMPDIFF(MONTH,start_work_date,CURDATE()),12)+prev_work_exp_month) >= 12,1,0)) as year_add, (MOD(TIMESTAMPDIFF(MONTH,start_work_date,CURDATE()),12)+prev_work_exp_month) as month_add from employee where nts!='' and start_work_date<='2016-11-19' and end_work_date>'2016-11-19' and status='Active' and company_id='2' and (FLOOR(TIMESTAMPDIFF(MONTH,start_work_date,CURDATE())/12)+prev_work_exp_year+IF((MOD(TIMESTAMPDIFF(MONTH,start_work_date,CURDATE()),12)+prev_work_exp_month) >= 12,1,0)) >= 4 order by nts asc
+
+ELIGIBLE CT MS
+
+select nts,prev_work_exp_year, prev_work_exp_month, FLOOR(TIMESTAMPDIFF(MONTH,start_work_date,CURDATE())/12) as year, TIMESTAMPDIFF(MONTH,start_work_date,CURDATE()) as month, (FLOOR(TIMESTAMPDIFF(MONTH,start_work_date,CURDATE())/12)+prev_work_exp_year+IF((MOD(TIMESTAMPDIFF(MONTH,start_work_date,CURDATE()),12)+prev_work_exp_month) >= 12,1,0)) as year_add, (MOD(TIMESTAMPDIFF(MONTH,start_work_date,CURDATE()),12)+prev_work_exp_month) as month_add from employee where nts!='' and start_work_date<='2016-11-19' and end_work_date>'2016-11-19' and status='Active' and company_id='1' and (FLOOR(TIMESTAMPDIFF(MONTH,start_work_date,CURDATE())/12)+prev_work_exp_year+IF((MOD(TIMESTAMPDIFF(MONTH,start_work_date,CURDATE()),12)+prev_work_exp_month) >= 12,1,0)) >= 4 and core_trade_course='' and multi_skill_register_no='' order by nts asc
