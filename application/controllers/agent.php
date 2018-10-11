@@ -111,6 +111,7 @@ class Agent extends User_Access_Controller
 		}
 		
 		echo $insert_id;
+		exit();
 	}
 	
 	function get_agent_detail()

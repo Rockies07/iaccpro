@@ -77,6 +77,7 @@ class Ledger extends User_Access_Controller
 		}
 		
 		echo $insert_id;
+		exit();
 	}
 
 	function save_ledger_multiple()
@@ -110,6 +111,7 @@ class Ledger extends User_Access_Controller
 		}
 		
 		echo $insert_id;
+		exit();
 	}
 
 	function add()

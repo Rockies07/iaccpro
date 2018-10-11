@@ -121,6 +121,7 @@ class Shareholder extends User_Access_Controller
 		}
 		
 		echo $insert_id;
+		exit();
 	}
 
 	function save_menu_shareholder()
@@ -146,6 +147,7 @@ class Shareholder extends User_Access_Controller
 		$insert_id=$id;
 		
 		echo $insert_id;
+		exit();
 	}
 
 	function delete_project_shareholder()
@@ -156,6 +158,7 @@ class Shareholder extends User_Access_Controller
 		$this->shareholder_model->delete_shareholder_project($id,$value);
 		
 		echo 'success';
+		exit();
 	}
 
 	function save_shareholder_project()
@@ -170,6 +173,7 @@ class Shareholder extends User_Access_Controller
 		$insert_id=$this->shareholder_model->insert_project($shareholder);
 		
 		echo $insert_id;
+		exit();
 	}
 	
 	function get_shareholder_detail()
@@ -199,6 +203,7 @@ class Shareholder extends User_Access_Controller
 		$shareholder = $this->shareholder_model->delete_shareholder_project($id);
 		
 		echo "success";
+		exit();
 	}
 
 	function _set_rules()

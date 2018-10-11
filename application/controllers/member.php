@@ -111,6 +111,7 @@ class Member extends User_Access_Controller
 		}
 		
 		echo $insert_id;
+		exit();
 	}
 
 	function add()
@@ -189,6 +190,7 @@ class Member extends User_Access_Controller
 		}
 		
 		echo $insert_id;
+		exit();
 	}
 	
 	function get_member_detail()
@@ -218,6 +220,7 @@ class Member extends User_Access_Controller
 		$counter = $this->member_model->is_exist('code',$id);
 
 		echo $counter;
+		exit();
 	}
 
 	function _set_rules()

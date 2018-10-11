@@ -11,7 +11,7 @@ class Account_model extends CI_Model
 	
 	function get_data_list($filter_status="")
 	{
-		$this->db->select('*');
+		$this->db->select('account.*, currency.code');
 		$this->db->join('currency', 'currency.id = account.currency_id');
 		if($filter_status!="")
 		{
