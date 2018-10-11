@@ -73,6 +73,7 @@ class Project extends User_Access_Controller
 		}
 		
 		echo $insert_id;
+		exit();
 	}
 	
 	function get_project_detail()
