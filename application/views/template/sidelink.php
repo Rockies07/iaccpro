@@ -17,7 +17,7 @@
 				<ul class="nav navbar-nav">
 					<li class="menu-dropdown mega-menu-dropdown ">
 						<a data-hover="megamenu-dropdown" data-close-others="true" data-toggle="dropdown" href="javascript:;" class="dropdown-toggle">
-						Announcement <i class="fa fa-angle-down"></i>
+						Announcement (D)<i class="fa fa-angle-down"></i>
 						</a>
 						<ul class="dropdown-menu" style="min-width: 220px">
 							<li>
@@ -52,10 +52,10 @@
 										<div class="col-md-12">
 											<ul class="mega-menu-submenu">
 												<li>
-													<?php echo anchor('placeout/index', '<i class="fa fa-angle-right"></i>Simple Entries');?>
+													<?php echo anchor('placeout/index', '<i class="fa fa-angle-right"></i>Simple Entries (D)');?>
 												</li>
 												<li>
-													<?php echo anchor('report/win_loss', '<i class="fa fa-angle-right"></i>Win/Loss Report');?>
+													<?php echo anchor('report/win_loss', '<i class="fa fa-angle-right"></i>Win/Loss Report (P)');?>
 												</li>
 											</ul>
 										</div>
@@ -116,13 +116,13 @@
 										<div class="col-md-6">
 											<ul class="mega-menu-submenu">
 												<li>
-													<?php echo anchor('member/index', '<i class="fa fa-angle-right"></i>Member');?>
+													<?php echo anchor('member/index', '<i class="fa fa-angle-right"></i>Member (D)');?>
 												</li>
 												<li>
-													<?php echo anchor('agent/index', '<i class="fa fa-angle-right"></i>Agent');?>
+													<?php echo anchor('agent/index', '<i class="fa fa-angle-right"></i>Agent (D)');?>
 												</li>
 												<li>
-													<?php echo anchor('shareholder/index', '<i class="fa fa-angle-right"></i>Shareholder');?>
+													<?php echo anchor('shareholder/index', '<i class="fa fa-angle-right"></i>Shareholder (D)');?>
 												</li>
 												<li>
 													<a href="ui_general.html">
@@ -134,10 +134,10 @@
 										<div class="col-md-6">
 											<ul class="mega-menu-submenu">
 												<li>
-													<?php echo anchor('url/index', '<i class="fa fa-angle-right"></i>URL List');?>
+													<?php echo anchor('url/index', '<i class="fa fa-angle-right"></i>URL List (D)');?>
 												</li>
 												<li>
-													<?php echo anchor('currency/index', '<i class="fa fa-angle-right"></i>Currency List');?>
+													<?php echo anchor('currency/index', '<i class="fa fa-angle-right"></i>Currency List (D)');?>
 												</li>
 											</ul>
 										</div>
@@ -227,7 +227,7 @@
 										<div class="col-md-6">
 											<ul class="mega-menu-submenu">
 												<li>
-													<?php echo anchor('ledger/index', '<i class="fa fa-angle-right"></i>General Ledger');?>
+													<?php echo anchor('ledger/index', '<i class="fa fa-angle-right"></i>General Ledger (D)');?>
 												</li>
 											</ul>
 										</div>
@@ -274,10 +274,10 @@
 										<div class="col-md-6">
 											<ul class="mega-menu-submenu">
 												<li>
-													<?php echo anchor('project/index', '<i class="fa fa-angle-right"></i>Project List');?>
+													<?php echo anchor('project/index', '<i class="fa fa-angle-right"></i>Project List (D)');?>
 												</li>
 												<li>
-													<?php echo anchor('account/index', '<i class="fa fa-angle-right"></i>Account List');?>
+													<?php echo anchor('account/index', '<i class="fa fa-angle-right"></i>Account List (D)');?>
 												</li>
 											</ul>
 										</div>
