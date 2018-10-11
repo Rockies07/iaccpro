@@ -66,6 +66,7 @@ class Placeout extends User_Access_Controller
 		$this->load->view('template/footer');
 		
 		echo $insert_id;
+		exit();
 	}
 
 	function save_placeout()
