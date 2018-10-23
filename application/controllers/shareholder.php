@@ -225,6 +225,7 @@ class Shareholder extends User_Access_Controller
 		$counter = $this->shareholder_model->is_exist('code',$id);
 
 		echo $counter;
+		exit();
 	}
 }
 
