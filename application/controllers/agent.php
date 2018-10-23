@@ -143,6 +143,7 @@ class Agent extends User_Access_Controller
 		$counter = $this->agent_model->is_exist('code',$id);
 
 		echo $counter;
+		exit();
 	}
 }
 
