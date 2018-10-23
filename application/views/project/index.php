@@ -70,6 +70,7 @@
 										<th width="50px" class="text-center">Type</th>
 										<th width="250px" class="text-center">Name</th>
 										<th width="250px" class="text-center">Address</th>
+										<th width="250px" class="text-center">Email</th>
 										<th class="text-center">Remark</th>
 										<th width="60px" class="text-center">Status</th>
 										<th width="120px" class="text-center">Action</th>
@@ -96,6 +97,7 @@
 													<td class="text-center"><?php echo $row['type']; ?></td>
 													<td><?php echo $row['name']; ?></td>
 													<td><?php echo $row['address']; ?></td>
+													<td><?php echo $row['email']; ?></td>
 													<td><?php echo nl2br($row['remark']); ?></td>
 													<td class="text-center"><?php echo $status_str; ?></td>
 													<td class="text-center actions">
@@ -140,7 +142,7 @@
 				<h4 class="modal-title">Project</h4>
 			</div>
 			<div class="modal-body">
-				<div class="scroller" style="height:280px" data-always-visible="1" data-rail-visible1="1">
+				<div class="scroller" style="height:350px" data-always-visible="1" data-rail-visible1="1">
 					<div class="col-md-12">
 						<div class="row">
 							<div class="form-group">
@@ -166,7 +168,7 @@
 						<div class="row">
 							<div class="form-group">
 								<label class="control-label col-md-3 font-sm">Name</label>
-								<div class="col-md-9">
+								<div class="col-md-5">
 									<input class="form-control form-control-inline input-sm" size="20" maxlength="50" type="text" name="name" id="name"/>
 								</div>
 							</div>
@@ -176,6 +178,14 @@
 								<label class="control-label col-md-3 font-sm">Address</label>
 								<div class="col-md-9">
 									<textarea name="address" id="address" class="col-md-12 form-control form-control-inline input-sm"></textarea>
+								</div>
+							</div>
+						</div>
+						<div class="row">
+							<div class="form-group">
+								<label class="control-label col-md-3 font-sm">Email</label>
+								<div class="col-md-7">
+									<input class="form-control form-control-inline input-sm" size="20" maxlength="50" type="text" name="email" id="email"/>
 								</div>
 							</div>
 						</div>
@@ -220,6 +230,7 @@
 		var mode=$("#mode").val();
 		var type=$("#type").val();
 		var address=$("#address").val();
+		var email=$("#email").val();
 		var name=$("#name").val();
 		var remark=$("#remark").val();
 		var status=$("#status").val();
@@ -227,7 +238,7 @@
 		$.ajax({
 	        type:"POST",
 	        url: "<?php echo site_url('project/save_project'); ?>",
-	        data:{"id":id,"mode":mode,"type":type,"address":address,"name":name,"remark":remark,"status":status},
+	        data:{"id":id,"mode":mode,"type":type,"address":address,"email":email,"name":name,"remark":remark,"status":status},
 	        success: function(response){
 	        	console.log(response);
 	        	$("#project_detail").load(location.href + " #project_detail");
@@ -254,6 +265,7 @@
 	        	$("#name").val(response.name);
 	        	$("#remark").val(response.remark);
 	        	$("#address").val(response.address);
+	        	$("#email").val(response.email);
 
 	        	switch(response.status)
 	        	{

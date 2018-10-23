@@ -39,6 +39,7 @@ class Project extends User_Access_Controller
 		$name=$this->input->post('name');
 		$remark=$this->input->post('remark');
 		$address=$this->input->post('address');
+		$email=$this->input->post('email');
 		$status=$this->input->post('status');
 
 		if($id>0)
@@ -50,6 +51,7 @@ class Project extends User_Access_Controller
 				'name'=>$name,
 				'remark'=>$remark,
 				'address'=>$address,
+				'email'=>$email,
 				'status'=>$status,
 				'updatedate'=>date('Y-m-d H:i:s',now()),
 				'updateby'=>$this->access->get_user()
@@ -65,6 +67,7 @@ class Project extends User_Access_Controller
 				'name'=>$name,
 				'remark'=>$remark,
 				'address'=>$address,
+				'email'=>$email,
 				'status'=>$status,
 				'createdate'=>date('Y-m-d H:i:s',now()),
 				'createby'=>$this->access->get_user()
