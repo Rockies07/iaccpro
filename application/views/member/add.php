@@ -212,7 +212,7 @@
 																{
 																	foreach ($url as $row){
 															?>
-																		<option value="<?php echo $row['url'];?>"><?php echo $row['url'];?></option>
+																		<option value="<?php echo $row['id'];?>"><?php echo $row['url'];?></option>
 															<?php
 																	}
 																}
@@ -237,7 +237,7 @@
 																{
 																	foreach ($currency as $row){
 															?>
-																		<option value="<?php echo $row['code'];?>"><?php echo $row['code'];?></option>
+																		<option value="<?php echo $row['id'];?>"><?php echo $row['code'];?></option>
 															<?php
 																	}
 																}
@@ -313,6 +313,7 @@
 				}
 			}
 
+			//console.log(form.serialize());
 			$.ajax({
 		        type:"POST",
 		        url: "<?php echo site_url('member/save_member_multiple'); ?>",
