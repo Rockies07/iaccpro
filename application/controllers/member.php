@@ -67,7 +67,7 @@ class Member extends User_Access_Controller
 		$ppt=$this->input->post('ppt');
 		$formula=$this->input->post('formula');
 		$project=$this->input->post('project');
-		if($code!="" && $password!="")
+		if($code!="")
 		{
 			if($password!="")
 			{
