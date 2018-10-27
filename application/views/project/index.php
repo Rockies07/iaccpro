@@ -185,7 +185,7 @@
 							<div class="form-group">
 								<label class="control-label col-md-3 font-sm">Email</label>
 								<div class="col-md-7">
-									<input class="form-control form-control-inline input-sm" size="20" maxlength="50" type="text" name="email" id="email"/>
+									<textarea name="email" id="email" class="col-md-12 form-control form-control-inline input-sm"></textarea>
 								</div>
 							</div>
 						</div>

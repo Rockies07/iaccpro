@@ -387,18 +387,26 @@
 		var curr=$("#curr").val();
 		var ppt=$("#ppt").val();
 		var formula=$("#formula").val();
-		if(code!="" && password!="")
+		if(code!="")
 		{
-			$.ajax({
-		        type:"POST",
-		        url: "<?php echo site_url('member/save_member'); ?>",
-		        data:{"id":id,"upline_id":upline_id,"code":code,"password":password,"status":status,"url":url,"curr":curr,"ppt":ppt,"remark":remark,"formula":formula,"project":project},
-		        success: function(response){
-		        	console.log('res: '+response);
-		        	$("#member_detail").load(location.href + " #member_detail");
-		        	$('#add_item').modal('hide');
-		        }
-		    });
+			if(id=="" && password=="")
+			{
+				alert('Password cannot be empty!');
+				return false;
+			}
+			else
+			{
+				$.ajax({
+			        type:"POST",
+			        url: "<?php echo site_url('member/save_member'); ?>",
+			        data:{"id":id,"upline_id":upline_id,"code":code,"password":password,"status":status,"url":url,"curr":curr,"ppt":ppt,"remark":remark,"formula":formula,"project":project},
+			        success: function(response){
+			        	console.log('res: '+response);
+			        	$("#member_detail").load(location.href + " #member_detail");
+			        	$('#add_item').modal('hide');
+			        }
+			    });
+			}
 		}
 		else
 		{

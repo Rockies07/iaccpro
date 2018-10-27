@@ -44,7 +44,7 @@
 									</div>
 								</div>
 								<div class="col-md-5">
-									<button type='button' class="btn btn-primary add_item_modal align-right" onclick='return save_member();'>Submit</button>
+									<button type='button' class="btn btn-primary add_item_modal align-right" onclick='save_member();'>Submit</button>
 								</div>
 							</div>
 						
@@ -285,42 +285,32 @@
 
 		if(code!="" && password_1!= "" && project!="" && upline!="")
 		{
-			for(var counter=1; counter<=20; counter++)
-			{
-				codecheck=$("#code_"+counter).val();
-				
-				if(codecheck!="" && codecheck!=null)
-				{
-					console.log(codecheck);
-					$.ajax({
-				        type:"POST",
-				        url: "<?php echo site_url('member/get_counter'); ?>",
-				        data:{"code": codecheck},
-				        success: function(response){
-				        	/*console.log('res '+response);*/
-				        	if(response>=1)
-				        	{
-				        		alert('ID already exist!');
-				        		$("#code_"+counter).focus();
-				        		return false;
-				        	}
-				        	else
-				        	{
-				        		return true;
-				        	}
-				        }
-				    });
-				}
-			}
-
-			//console.log(form.serialize());
 			$.ajax({
 		        type:"POST",
-		        url: "<?php echo site_url('member/save_member_multiple'); ?>",
+		        url: "<?php echo site_url('member/get_counter'); ?>",
 		        data:form.serialize(),
 		        success: function(response){
-		        	console.log(response);
-		        	window.location.href="<?php echo site_url('member/index'); ?>";
+		        	/*console.log('res '+response);*/
+		        	if(response>0)
+		        	{
+		        		console.log(response);
+		        		alert('ID in row '+response+' already exist!');
+		        		$("#code_"+response).focus();
+		        		return false;
+		        	}
+		        	else
+		        	{
+		        		//console.log(form.serialize());
+						$.ajax({
+					        type:"POST",
+					        url: "<?php echo site_url('member/save_member_multiple'); ?>",
+					        data:form.serialize(),
+					        success: function(response){
+					        	console.log(response);
+					        	window.location.href="<?php echo site_url('member/index'); ?>";
+					        }
+					    });
+		        	}
 		        }
 		    });
 		}

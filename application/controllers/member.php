@@ -215,10 +215,20 @@ class Member extends User_Access_Controller
 
 	function get_counter()
 	{
-		$id=$this->input->post('code');
+		$counter = 0;
+		for($i=1;$i<=20;$i++)
+		{
+			$id=$this->input->post('code_'.$i);
 
-		$counter = $this->member_model->is_exist('code',$id);
+			$counter = $this->member_model->is_exist('code',$id);
 
+			if($counter>0)
+			{
+				$counter = $i;
+				break;
+			}
+		}
+		
 		echo $counter;
 		exit();
 	}
