@@ -55,7 +55,7 @@
 													<?php echo anchor('placeout/index', '<i class="fa fa-angle-right"></i>Simple Entries (D)');?>
 												</li>
 												<li>
-													<?php echo anchor('report/win_loss', '<i class="fa fa-angle-right"></i>Win/Loss Report (P)');?>
+													<?php echo anchor('report/win_loss', '<i class="fa fa-angle-right"></i>Win/Loss Report (D)');?>
 												</li>
 											</ul>
 										</div>
@@ -89,9 +89,7 @@
 										<div class="col-md-6">
 											<ul class="mega-menu-submenu">
 												<li>
-													<a href="ui_general.html">
-													<i class="fa fa-angle-right"></i>
-													Due Balance </a>
+													<?php echo anchor('report/due_balance', '<i class="fa fa-angle-right"></i>Due Balance (P)');?>
 												</li>
 												<li>
 													<a href="ui_general.html">

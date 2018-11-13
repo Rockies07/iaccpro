@@ -83,6 +83,7 @@ class Placeout extends User_Access_Controller
 			$ag_id=$get_member_detail->ag_id;
 			$code=$get_member_detail->code;
 			$curr_id=$get_member_detail->curr;
+			$rate=$this->currency_model->get_by_id($curr_id)->rate;
 			$remark=$get_member_detail->remark;
 			$ppt=$get_member_detail->ppt;
 			$formula=$get_member_detail->formula;
@@ -107,6 +108,7 @@ class Placeout extends User_Access_Controller
 					'url_id'=>$url_id,
 					'amount'=>$amount,
 					'curr_id'=>$curr_id,
+					'rate'=>$rate,
 					'description'=>$description,
 					'remark'=>$remark,
 					'ppt'=>$ppt,
@@ -125,6 +127,64 @@ class Placeout extends User_Access_Controller
 		}
 		
 		echo $insert_id;
+		exit();
+	}
+
+	function edit_placeout()
+	{
+		$edit_id = $this->input->post('edit_id');
+		$project = $this->input->post('project');
+		$id=$this->input->post('member_id');
+		$amount=$this->input->post('amount');
+		$description=$this->input->post('description');
+
+		$get_member_detail=$this->member_model->get_by_code($id);
+		$sh_id=$get_member_detail->sh_id;
+		$ag_id=$get_member_detail->ag_id;
+		$code=$get_member_detail->code;
+		$curr_id=$get_member_detail->curr;
+		$rate=$this->currency_model->get_by_id($curr_id)->rate;
+		$remark=$get_member_detail->remark;
+		$ppt=$get_member_detail->ppt;
+		$formula=$get_member_detail->formula;
+		$url_id=$get_member_detail->url_id;
+
+		$str_formula="($amount*-1)*$ppt/100$formula";
+		eval( '$result = (' . $str_formula. ');' );
+		$cpybalance=$result;
+
+		$str_formula="($amount)*$ppt/100$formula";
+		eval( '$result = (' . $str_formula. ');' );
+		$duebalance=$result;
+
+		if($id!="" && $amount!="")
+		{
+			$placeout=array(
+				'project_id'=>$project,
+				'sh_id'=>$sh_id,
+				'ag_id'=>$ag_id,
+				'meb_id'=>$code,
+				'url_id'=>$url_id,
+				'amount'=>$amount,
+				'curr_id'=>$curr_id,
+				'rate'=>$rate,
+				'description'=>$description,
+				'remark'=>$remark,
+				'ppt'=>$ppt,
+				'formula'=>$formula,
+				'cpybalance'=>$cpybalance,
+				'duebalance'=>$duebalance,
+				'updatedate'=>date('Y-m-d H:i:s',now()),
+				'updateby'=>$this->access->get_username(),
+				'createdate'=>date('Y-m-d H:i:s',now()),
+				'createby'=>$this->access->get_username()
+			);
+			
+			$this->placeout_model->update($edit_id,$placeout);
+			//print_r($insert_id);
+		}
+		
+		echo $edit_id;
 		exit();
 	}
 	

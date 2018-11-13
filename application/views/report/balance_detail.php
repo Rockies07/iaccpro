@@ -83,49 +83,9 @@
 													}
 												?>
 											</select>
-										</div>
-										<label class="control-label col-md-1" style="width: 100px !important; padding-left: 0">Upline</label>
-										<div class="col-md-2" style="width:200px !important">
-											<select class="form-control input-sm select2me" name="filter_upline" id="filter_upline" style="margin-bottom:10px">
-												<?php
-													if($filter_upline!='')
-													{
-														$filter_upline_arr=explode("-", $filter_upline);
-														$filter_upline_text=$filter_upline_arr[1];
-												?>
-														<option value="<?php echo $filter_upline;?>"><?php echo $filter_upline_text;?></option>
-												<?php
-													}
-												?>
-												<option value="">- Please Select -</option>
-												<optgroup label="Shareholder">
-													<?php
-														if(!empty($shareholder))
-														{
-															$i=0;
-															foreach ($shareholder as $row){
-													?>
-																<option value="<?php echo 'sh-'.$row['code'];?>"><?php echo $row['code'];?></option>
-													<?php
-															}
-														}
-													?>
-												</optgroup>
-												<optgroup label="Agent">
-													<?php
-
-														if(!empty($agent))
-														{
-															$i=0;
-															foreach ($agent as $row){
-													?>
-																<option value="<?php echo 'ag-'.$row['code'];?>"><?php echo $row['sh_id'].' <font color="blue">&#9658;</font> '.$row['code'];?></option>
-													<?php
-															}
-														}
-													?>
-												</optgroup>
-											</select>
+											<input class="form-control form-control-inline input-sm" size="16" name="filter_id" id="filter_id" type="hidden" value="<?php echo $filter_id;?>"/>
+											<input class="form-control form-control-inline input-sm" size="16" name="filter_curr" id="filter_curr" type="hidden" value="<?php echo $filter_curr;?>"/>
+											<input class="form-control form-control-inline input-sm" size="16" name="filter_level" id="filter_level" type="hidden" value="<?php echo $filter_level;?>"/>
 										</div>
 										<div class="col-md-2" style="width:100px !important">
 											<button type="submit" class="btn green"><i class="fa fa-check"></i> Submit</button>
@@ -143,12 +103,13 @@
 										<th width="120px" class="text-center">Project</th>
 										<th width="120px" class="text-center">URL</th>
 										<th width="120px" class="text-center">ID</th>
-										<th width="120px" class="text-center">I.Amount</th>
-										<th width="60px" class="text-center">Curr</th>
 										<th width="150px" class="text-center">Win/Loss</th>
 										<th width="180px" class="text-center">Formula</th>
-										<th class="text-center">Description</th>
+										<th width="150px" class="text-center">Payment</th>
 										<th width="100px" class="text-center">Rate@</th>
+										<th width="180px" class="text-center">Account</th>
+										<th width="150px" class="text-center">Balance</th>
+										<th class="text-center">Description</th>
 										<th width="100px" class="text-center">Action</th>
 									</tr>
 								</thead>
@@ -171,7 +132,7 @@
 													<td class="text-center">
 														<?php echo $row->url; ?>
 													</td>
-													<td class="text-center">
+													<td>
 														<?php
 															if($row->sh_id!="")
 															{
@@ -195,12 +156,6 @@
 														?>
 													</td>
 													<td class="text-center">
-														<?php echo $utility->set_number($row->amount); ?>
-													</td>
-													<td class="text-center">
-														<?php echo $row->curcode; ?>
-													</td>
-													<td class="text-center">
 														<?php echo $utility->set_number($row->cpybalance); ?>
 													</td>
 													<td class="text-center">
@@ -209,10 +164,19 @@
 														?>
 													</td>
 													<td class="text-center">
-														<?php echo $row->description; ?>
+														<?php echo $utility->set_number($row->amount); ?>
 													</td>
 													<td class="text-center">
 														<?php echo $row->rate; ?>
+													</td>
+													<td class="text-center">
+														<?php echo $row->rate; ?>
+													</td>
+													<td class="text-center">
+														<?php echo $row->rate; ?>
+													</td>
+													<td class="text-center">
+														<?php echo $row->description; ?>
 													</td>
 													<td class="text-center actions">
 														<a data-toggle="modal" href="#add_item" data-id="<?php echo $row->id;?>" class="add_item_modal">
