@@ -493,15 +493,19 @@
 
 	function delete_transaction(id)
 	{
-		$.ajax({
-	        type:"POST",
-	        url: "<?php echo site_url('report/delete'); ?>",
-	        data:{"id": id},
-	        success: function(response){
-	        	console.log('res: '+id);
-	        	$("#transaction_detail").load(location.href + " #transaction_detail");
-	        }
-	    });
+		if(confirm('Are you sure to remove this transaction?'))
+		{
+			$.ajax({
+		        type:"POST",
+		        url: "<?php echo site_url('report/delete'); ?>",
+		        data:{"id": id},
+		        success: function(response){
+		        	//console.log('res: '+id);
+		        	/*$("#transaction_detail").load(location.href + " #transaction_detail");*/
+		        	$("form").submit();
+		        }
+		    });
+		}
 	}
 </script>
 
