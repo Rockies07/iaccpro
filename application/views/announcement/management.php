@@ -86,7 +86,7 @@
 												<?php
 													}
 												?>
-												<option value="0" <?php echo set_select('category', '0'); ?>>Public</option>
+												<option value="0" <?php echo set_select('category', '0'); ?> selected>Public</option>
 												<option value="1" <?php echo set_select('category', '1'); ?>>Sub Admin</option>
 												<option value="2" <?php echo set_select('category', '2'); ?>>Administrator</option>
 											</select>
