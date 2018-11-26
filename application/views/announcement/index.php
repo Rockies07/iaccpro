@@ -21,6 +21,9 @@
 			<!-- END PAGE BREADCRUMB -->
 			<!-- BEGIN PAGE CONTENT INNER -->
 			<div class="row">
+				<div class="col-md-12" style="text-align:right; padding-bottom: 10px">
+					<?php echo anchor('announcement/management', 'Add Announcement',array('class' => 'btn btn-primary add_item_modal align-right', 'target' => '_blank'));?>
+				</div>
 				<div class="col-md-12">
 					<!-- BEGIN EXAMPLE TABLE PORTLET-->
 					<div class="portlet light">
