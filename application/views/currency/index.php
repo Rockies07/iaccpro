@@ -41,7 +41,7 @@
 										<th>Currency Name</th>
 										<th width="150px" class="text-center">Rate</th>
 										<th width="120px" class="text-center">Action</th>
-										<th width="120px" class="text-center">Update Date</th>
+										<th width="180px" class="text-center">Update Date</th>
 									</tr>
 								</thead>
 								<tbody>

@@ -21,7 +21,7 @@ class Url extends User_Access_Controller
 				'action' => site_url('url/index'),
 				'attribute' => array('class' => 'form-horizontal', 'id' => 'myForm'),
 				'url'=>$this->url_model->get_data_list($filter_status),
-				'project'=>$this->project_model->get_data_list('1'),
+				'project'=>$this->project_model->get_type_list('1'),
 				'filter_status'=>$filter_status,
 				'title'=>"iAccpro",
 				'site_name'=>"iAccpro",

@@ -103,7 +103,7 @@
 										<th width="80px" class="text-center">Action</th>
 										<th width="160px" class="text-center">Name</th>
 										<th width="100px" class="text-center">Contact No.</th>
-										<th width="120px" class="text-center">Bank Acc.</th>
+										<th width="200px" class="text-center">Bank Detail or Definition</th>
 										<th class="text-center">Remark</th>
 										<th width="100px" class="text-center">IP Address</th>
 										<th width="100px" class="text-center">Login Date</th>

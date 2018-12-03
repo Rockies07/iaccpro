@@ -155,7 +155,7 @@
 												<input type="checkbox" id="curr_checkbox" onchange="check_list('curr')">
 											</td>
 											<td>
-												<input class="form-control form-control-inline input-sm" name="ppt_1" id="ppt_1" onkeypress="return isNumberKey(event);" maxlength='5'/>
+												<input class="form-control form-control-inline input-sm" name="ppt_1" id="ppt_1" onkeypress="return isNumberKey(event);" maxlength='5' value="100"/>
 											</td>
 											<td>
 												<input class="form-control form-control-inline input-sm" name="formula_1" id="formula_1"/>
@@ -245,7 +245,7 @@
 														</select>
 													</td>
 													<td>
-														<input class="form-control form-control-inline input-sm" name="ppt_<?php echo $i;?>" id="ppt_<?php echo $i;?>" onkeypress="return isNumberKey(event);" maxlength='5'/>
+														<input class="form-control form-control-inline input-sm" name="ppt_<?php echo $i;?>" id="ppt_<?php echo $i;?>" onkeypress="return isNumberKey(event);" maxlength='5' value="100"/>
 													</td>
 													<td>
 														<input class="form-control form-control-inline input-sm" name="formula_<?php echo $i;?>" id="formula_<?php echo $i;?>"/>

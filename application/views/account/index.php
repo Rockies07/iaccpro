@@ -67,13 +67,13 @@
 									<tr>
 										<th width="10px" class="text-center">S/N</th>
 										<th width="50px" class="text-center">Mode</th>
-										<th width="150px" class="text-center">Acc. Number</th>
+										<th width="200px" class="text-center">Bank Detail or Definition</th>
 										<th width="50px" class="text-center">Curr</th>
-										<th width="100px" class="text-center">Status</th>
+										<th width="80px" class="text-center">Status</th>
 										<th width="150px" class="text-center">Profile</th>
 										<th width="250px" class="text-center">Security</th>
 										<th width="120px" class="text-center">Contact</th>
-										<th width="120px" class="text-center">Email</th>
+										<th width="200px" class="text-center">Email</th>
 										<th class="text-center">Remark</th>
 										<th width="120px" class="text-center">Action</th>
 									</tr>

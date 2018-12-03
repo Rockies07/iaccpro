@@ -24,6 +24,24 @@ class Project_model extends CI_Model
 		$query=$this->db->get($this->table_name);
 		return $query->result_array();
 	}
+
+	function get_type_list($filter_status="", $filter_mode="")
+	{
+		if($filter_status!="")
+		{
+			$this->db->where('status',$filter_status);
+		}
+
+		if($filter_mode!="")
+		{
+			$this->db->where('mode',$filter_mode);
+		}
+		$this->db->where('hidden','0');
+		$this->db->group_by('type');
+		$this->db->order_by('type');
+		$query=$this->db->get($this->table_name);
+		return $query->result_array();
+	}
 	
 	function get_by_id($id)
 	{

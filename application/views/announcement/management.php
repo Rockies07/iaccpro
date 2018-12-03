@@ -14,7 +14,7 @@
 			</ul>
 			<!-- END PAGE BREADCRUMB -->	
 			<div class="row">
-				<div class="col-md-4">
+				<div class="col-md-12">
 					<div class="portlet box blue ">
 						<div class="portlet-title">
 							<div class="caption">
@@ -49,21 +49,21 @@
 							<?php echo form_open($action, $attribute)?>
 								<div class="form-body">
 									<div class="form-group">
-										<label class="control-label col-md-3">Title</label>
-										<div class="col-md-9">
+										<label class="control-label col-md-2">Title</label>
+										<div class="col-md-10">
 											<input type="text" name="title" class="form-control" placeholder="Title" value="<?php echo (isset($edit_announcement->title))?$edit_announcement->title:set_value('title');?>"/>
 											<input type="hidden" name="edit_id" value="<?php echo (isset($edit_announcement->id))?$edit_announcement->id:'0';?>"/>
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="control-label col-md-3">Description</label>
-										<div class="col-md-9">
+										<label class="control-label col-md-2">Description</label>
+										<div class="col-md-10">
 											<textarea name="description" placeholder="Description" class="form-control" rows="5"><?php echo (isset($edit_announcement->description))?$edit_announcement->description:set_value('description');?></textarea>
 										</div>
 									</div>
 									<div class="form-group">
-										<label class="control-label col-md-3">Category</label>
-										<div class="col-md-9">
+										<label class="control-label col-md-2">Category</label>
+										<div class="col-md-10">
 											<select class="form-control" name="category">
 												<?php 
 													if(isset($edit_announcement->category))

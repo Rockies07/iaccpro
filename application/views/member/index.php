@@ -125,8 +125,8 @@
 									?>
 												<tr>
 													<td class="text-center"><?php echo $i; ?></td>
-													<td class="text-center"><?php echo $row['project_name']; ?></td>
-													<td class="text-center">
+													<td><?php echo $row['project_name']; ?></td>
+													<td>
 														<?php 
 															$sh_id=$row['sh_id'];
 															$ag_id=$row['ag_id'];
@@ -148,7 +148,7 @@
 															}
 														?>
 													</td>
-													<td class="text-center">
+													<td>
 														<?php echo $row['code']; ?>
 													</td>
 													<td class="text-center">*****</td>
