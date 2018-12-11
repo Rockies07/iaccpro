@@ -27,7 +27,7 @@
 							<div class="row">
 								<div class="col-md-7">
 									<div class="form-group  col-md-3">
-										<select class="form-control input-sm select2me" name='project' id="project">
+										<select class="form-control input-sm select2me" name='project' id="project" onchange="get_url_by_project();">
 											<option value="">- Please Select -</option>
 											<?php
 												if(!empty($project))
@@ -108,20 +108,9 @@
 												<input class="form-control form-control-inline input-sm" name="password_1" id="password_1"/>
 											</td>
 											<td>
-												<select class="form-control input-sm select2me" name="url_1" id="url_1" style="margin-bottom:10px">
+												<select class="form-control input-sm url_site" name="url_1" id="url_1" style="margin-bottom:10px">
 													<option value="">- Please Select -</option>
-													<?php
 
-														if(!empty($url))
-														{
-															$i=0;
-															foreach ($url as $row){
-													?>
-																<option value="<?php echo $row['id'];?>"><?php echo $row['url'];?></option>
-													<?php
-															}
-														}
-													?>
 												</select>
 												<br>
 												<input type="checkbox" id="url_checkbox" onchange="check_list('url')">
@@ -204,19 +193,8 @@
 														<input class="form-control form-control-inline input-sm" name="password_<?php echo $i;?>" id="password_<?php echo $i;?>"/>
 													</td>
 													<td>
-														<select class="form-control input-sm select2me" name="url_<?php echo $i;?>" id="url_<?php echo $i;?>">
+														<select class="form-control input-sm url_site" name="url_<?php echo $i;?>" id="url_<?php echo $i;?>">
 															<option value="">- Please Select -</option>
-															<?php
-
-																if(!empty($url))
-																{
-																	foreach ($url as $row){
-															?>
-																		<option value="<?php echo $row['id'];?>"><?php echo $row['url'];?></option>
-															<?php
-																	}
-																}
-															?>
 														</select>
 													</td>
 													<td class="text-center">
@@ -318,6 +296,31 @@
 		{
 			alert('Upline, Code, Password & Project cannot be empty!');
 		}
+	}
+
+	function get_url_by_project()
+	{
+		var project = $("#project").val();
+
+		$.ajax({
+	        type:"POST",
+	        url: "<?php echo site_url('url/get_url_by_project_id'); ?>",
+	        data:{"project":project},
+	        success: function(response){
+	        	/*console.log(response);*/
+	        	response=JSON.parse(response);
+
+	        	$('.url_site').find('option').remove().end();
+	        	var newOption = new Option('- Please Select -', '', false, false);
+				$('.url_site').append(newOption);
+
+	        	$.each(response, function(index) {
+		            console.log(response[index].url);
+		            var newOption = new Option(response[index].url, response[index].id, false, false);
+					$('.url_site').append(newOption);
+		        });
+	        }
+	    });
 	}
 
 	function check_list(label)

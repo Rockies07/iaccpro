@@ -139,16 +139,18 @@
 								<thead>
 									<tr>
 										<th width="10px" class="text-center">S/N</th>
-										<th width="100px" class="text-center">Date</th>
-										<th width="120px" class="text-center">Project</th>
-										<th width="120px" class="text-center">URL</th>
-										<th width="120px" class="text-center">ID</th>
+										<th width="120px" class="text-center">Date</th>
+										<th width="120px">Project</th>
+										<th width="120px">URL</th>
+										<th width="120px">ID</th>
 										<th width="120px" class="text-center">I.Amount</th>
 										<th width="60px" class="text-center">Curr</th>
-										<th width="150px" class="text-center">Win/Loss</th>
+										<th width="150px" class="text-center">Due Balance</th>
 										<th width="180px" class="text-center">Formula</th>
+										<th width="70px" class="text-center">PPT%</th>
 										<th class="text-center">Description</th>
 										<th width="100px" class="text-center">Rate@</th>
+										<th width="150px" class="text-center">Win/Loss</th>
 										<th width="100px" class="text-center">Action</th>
 									</tr>
 								</thead>
@@ -163,15 +165,15 @@
 												<tr>
 													<td class="text-center"><?php echo $i; ?></td>
 													<td class="text-center">
-														<?php echo date('d-M-Y', strtotime($row->date)); ?>
+														<?php echo date('D, d-M-Y', strtotime($row->date)); ?>
 													</td>
-													<td class="text-center">
+													<td>
 														<?php echo $row->project_name; ?>
 													</td>
-													<td class="text-center">
+													<td>
 														<?php echo $row->url; ?>
 													</td>
-													<td class="text-center">
+													<td>
 														<?php
 															if($row->sh_id!="")
 															{
@@ -201,18 +203,27 @@
 														<?php echo $row->curcode; ?>
 													</td>
 													<td class="text-center">
-														<?php echo $utility->set_number($row->cpybalance); ?>
+														<?php echo $utility->set_number($row->duebalance); ?>
 													</td>
 													<td class="text-center">
 														<?php 
-															echo "(".$row->amount."*".$row->ppt."%*-1)".$row->formula; 
+															if($row->formula!="")
+															{
+																echo "(".$row->amount."*".$row->ppt."%)".$row->formula; 
+															}
 														?>
 													</td>
 													<td class="text-center">
+														<?php echo $row->ppt; ?>%
+													</td>
+													<td>
 														<?php echo $row->description; ?>
 													</td>
 													<td class="text-center">
 														<?php echo $row->rate; ?>
+													</td>
+													<td class="text-center">
+														<?php echo $utility->set_number($row->cpybalance); ?>
 													</td>
 													<td class="text-center actions">
 														<a data-toggle="modal" href="#add_item" data-id="<?php echo $row->id;?>" class="add_item_modal">

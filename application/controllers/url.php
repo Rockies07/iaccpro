@@ -34,6 +34,16 @@ class Url extends User_Access_Controller
 		$this->load->view('template/footer');
 	}
 
+	function get_url_by_project_id()
+	{
+		$id=$this->input->post('project');
+
+		$result = $this->url_model->get_url_by_project_id($id);
+
+		echo json_encode($result);
+		exit();
+	}
+
 	function save_url()
 	{
 		$id=$this->input->post('id');

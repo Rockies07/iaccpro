@@ -11,7 +11,7 @@ class Report_model extends CI_Model
 	
 	function win_loss($filter_from="",$filter_to="",$filter_project="",$filter_upline="")
 	{
-		$this->db->select('t.id as id, t.date as date, t.project_id, p.name as project_name, t.url_id, u.url as url, t.sh_id as sh_id, t.ag_id as ag_id, t.meb_id as meb_id, t.amount as amount, t.curr_id, c.code as curcode, t.cpybalance, t.formula as formula, t.ppt as ppt, t.description, c.rate as rate');
+		$this->db->select('t.id as id, t.date as date, t.project_id, p.name as project_name, t.url_id, u.url as url, t.sh_id as sh_id, t.ag_id as ag_id, t.meb_id as meb_id, t.amount as amount, t.curr_id, c.code as curcode, t.cpybalance, t.duebalance, t.formula as formula, t.ppt as ppt, t.description, c.rate as rate');
 		$this->db->join('project as p', 'p.id = t.project_id', 'left');
 		$this->db->join('currency as c', 'c.id = t.curr_id', 'left');
 		$this->db->join('url as u', 'u.id = t.url_id', 'left');

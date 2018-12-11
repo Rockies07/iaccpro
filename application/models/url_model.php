@@ -65,6 +65,15 @@ class Url_model extends CI_Model
 		$query=$this->db->get($this->table_name);
 		return ($query->num_rows()>0)?$query->row():FALSE;
 	}
+
+	function get_url_by_project_id($id)
+	{
+		$this->db->where('project_id',$id);
+		$this->db->where('hidden','0');
+		$this->db->where('status','1');
+		$query=$this->db->get($this->table_name);
+		return $query->result();
+	}
 	
 }
 
