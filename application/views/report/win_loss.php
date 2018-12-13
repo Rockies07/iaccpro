@@ -177,7 +177,7 @@
 														<?php
 															if($row->sh_id!="")
 															{
-																$sh_id=$row->sh_id.".";
+																$sh_id=$row->sh_id." <font color='blue'>&#9658;</font> ";
 															}
 															else
 															{
@@ -186,7 +186,7 @@
 
 															if($row->ag_id!="")
 															{
-																$ag_id=$row->ag_id.".";
+																$ag_id=$row->ag_id." <font color='blue'>&#9658;</font> ";
 															}
 															else
 															{
@@ -209,7 +209,7 @@
 														<?php 
 															if($row->formula!="")
 															{
-																echo "(".$row->amount."*".$row->ppt."%)".$row->formula; 
+																echo $row->amount.$row->formula; 
 															}
 														?>
 													</td>
@@ -252,29 +252,26 @@
 										<td colspan = "14" class="text-right">&nbsp;</td>
 									</tr>
 									<tr>
-										<td colspan = "7" class="text-right"><strong>Currency Name</strong></td>
-										<td class="text-center"><strong>Code</strong></td>
+										<td colspan = "12" class="text-right"><strong>Currency Name</strong></td>
+										<!-- <td class="text-center"><strong>Code</strong></td> -->
 										<td class="text-center"><strong>Total</strong></td>
-										<td colspan = "5" class="text-center">&nbsp;</td>
+										<td  class="text-center">&nbsp;</td>
 									</tr>
 									<?php 
-										if(!empty($currency))
+										if(!empty($total_win_loss))
 										{
 											$i=0;
-											foreach ($currency as $row){
+											foreach ($total_win_loss as $row){
 												$i++;
 									?>
 												<tr>
-													<td class="text-right" colspan='7'><?php echo $row['name']; ?></td>
-													<td class="text-center">
-														<?php echo $row['code']; ?>
-													</td>
+													<td class="text-right" colspan='12'><?php echo $row->currency_name; ?></td>
 													<td class="text-center">
 														<?php
-															echo $utility->set_number($report_model->total_win_loss($filter_from,$filter_to,$filter_project,$filter_upline,$row['id']));
+															echo $utility->set_number($row->amount);
 														?>
 													</td>
-													<td colspan = "5" class="text-center">&nbsp;</td>
+													<td class="text-center">&nbsp;</td>
 												</tr>
 									<?php 
 											}

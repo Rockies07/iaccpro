@@ -53,9 +53,9 @@ class Report_model extends CI_Model
 		return $query->result();
 	}
 
-	function total_win_loss($filter_from="",$filter_to="",$filter_project="",$filter_upline="", $currency)
+	function total_win_loss($filter_from="",$filter_to="",$filter_project="",$filter_upline="", $currency="")
 	{
-		$this->db->select('sum(t.cpybalance) as amount');
+		$this->db->select('c.name as currency_name,sum(t.cpybalance) as amount,sum(t.duebalance) as duebalance');
 		$this->db->join('project as p', 'p.id = t.project_id', 'left');
 		$this->db->join('currency as c', 'c.id = t.curr_id', 'left');
 		$this->db->join('url as u', 'u.id = t.url_id', 'left');
@@ -82,7 +82,10 @@ class Report_model extends CI_Model
 			}
 		}
 
-		$this->db->where('c.id', $currency);
+		if($currency!="")
+		{
+			$this->db->where('c.id', $currency);
+		}
 
 		if($filter_from != "0000-00-00" && $filter_from != "" && $filter_to != "0000-00-00" && $filter_to != "")
 		{
@@ -94,9 +97,10 @@ class Report_model extends CI_Model
 		}
 
 		$this->db->where('t.hidden','0');
+		$this->db->having('amount !=','0');
 		$query=$this->db->get($this->table_name.' as t');
 
-		return $query->row()->amount;
+		return $query->result();
 	}
 
 	function delete($id)
@@ -131,7 +135,7 @@ class Report_model extends CI_Model
 	{
 		if($level=="sh")
 		{
-			$sql="SELECT SUM(amount) as amount from placeout where sh_id='$id' and curr_id='$curr' and hidden='0'";
+			$sql="SELECT SUM(duebalance) as amount from placeout where sh_id='$id' and curr_id='$curr' and hidden='0'";
 			$amount_placeout=$this->db->query($sql)->row()->amount;
 
 			$sql="SELECT SUM(amount) as amount from transaction where sh_id='$id' and curr_id='$curr' and hidden='0'";
@@ -139,7 +143,7 @@ class Report_model extends CI_Model
 		}
 		else
 		{
-			$sql="SELECT SUM(amount) as amount from placeout where ag_id='$id' and curr_id='$curr' and hidden='0'";
+			$sql="SELECT SUM(duebalance) as amount from placeout where ag_id='$id' and curr_id='$curr' and hidden='0'";
 			$amount_placeout=$this->db->query($sql)->row()->amount;
 
 			$sql="SELECT SUM(amount) as amount from transaction where ag_id='$id' and curr_id='$curr' and hidden='0'";
@@ -166,15 +170,15 @@ class Report_model extends CI_Model
 
 		if($level=="sh")
 		{
-			$sql="SELECT t.date as date, t.project_id as project_id, p.name as project_name, t.url_id as url_id, u.url as url, t.sh_id as sh_id, t.ag_id as ag_id, t.meb_id as meb_id, t.amount as amount, t.curr_id as curr_id, c.code as curcode, t.formula as formula, t.duebalance as winloss, t.rate as currate, '-' as account,t.description as description FROM placeout t, currency c, url u, project p where t.project_id=p.id and t.curr_id=c.id and t.url_id = u.id and t.sh_id='$id' and t.curr_id='$curr' $filter_sql
+			$sql="SELECT t.date as date, t.project_id as project_id, p.name as project_name, t.url_id as url_id, u.url as url, t.sh_id as sh_id, t.ag_id as ag_id, t.meb_id as meb_id, t.amount as amount, t.curr_id as curr_id, c.code as curcode, t.formula as formula, t.duebalance as winloss, t.rate as currate, '-' as account,t.description as description FROM placeout t, currency c, url u, project p where t.project_id=p.id and t.curr_id=c.id and t.url_id = u.id and t.sh_id='$id' and t.hidden ='0' and t.curr_id='$curr' $filter_sql
 					UNION 
-				SELECT t.date as date, t.project_id as project_id, p.name as project_name, '-' as url_id, '-' as url, t.sh_id as sh_id, t.ag_id as ag_id, '-' as meb_id, '-' as amount, t.curr_id as curr_id, c.code as curcode, '-' as formula, t.amount as winloss, t.curr_rate_1 as currate, t.payer_2 as account,t.remark as description FROM transaction t, currency c, account a, project p where t.project_id=p.id and t.curr_id=c.id and t.sh_id='$id' and t.curr_id='$curr' $filter_sql";
+				SELECT t.date as date, t.project_id as project_id, p.name as project_name, '-' as url_id, '-' as url, t.sh_id as sh_id, t.ag_id as ag_id, '-' as meb_id, '-' as amount, t.curr_id as curr_id, c.code as curcode, '-' as formula, t.amount as winloss, t.curr_rate_1 as currate, t.payer_2 as account,t.remark as description FROM transaction t, currency c, account a, project p where t.project_id=p.id and t.curr_id=c.id and t.sh_id='$id' and t.hidden ='0'  and t.curr_id='$curr' $filter_sql";
 		}
 		else
 		{
-			$sql="SELECT t.date as date, t.project_id as project_id, p.name as project_name, t.url_id as url_id, u.url as url, t.sh_id as sh_id, t.ag_id as ag_id, t.meb_id as meb_id, t.amount as amount, t.curr_id as curr_id, c.code as curcode, t.formula as formula, t.duebalance as winloss, t.rate as currate, '-' as account,t.description as description FROM placeout t, currency c, url u, project p where t.project_id=p.id and t.curr_id=c.id and t.url_id = u.id and t.ag_id='$id' and t.curr_id='$curr' $filter_sql
+			$sql="SELECT t.date as date, t.project_id as project_id, p.name as project_name, t.url_id as url_id, u.url as url, t.sh_id as sh_id, t.ag_id as ag_id, t.meb_id as meb_id, t.amount as amount, t.curr_id as curr_id, c.code as curcode, t.formula as formula, t.duebalance as winloss, t.rate as currate, '-' as account,t.description as description FROM placeout t, currency c, url u, project p where t.project_id=p.id and t.curr_id=c.id and t.url_id = u.id and t.ag_id='$id' and t.hidden ='0'  and t.curr_id='$curr' $filter_sql
 					UNION 
-				SELECT t.date as date, t.project_id as project_id, p.name as project_name, '-' as url_id, '-' as url, t.sh_id as sh_id, t.ag_id as ag_id, '-' as meb_id, '-' as amount, t.curr_id as curr_id, c.code as curcode, '-' as formula, t.amount as winloss, t.curr_rate_1 as currate, t.payer_2 as account,t.remark as description FROM transaction t, currency c, account a, project p where t.project_id=p.id and t.curr_id=c.id and t.ag_id='$id' and t.curr_id='$curr' $filter_sql";
+				SELECT t.date as date, t.project_id as project_id, p.name as project_name, '-' as url_id, '-' as url, t.sh_id as sh_id, t.ag_id as ag_id, '-' as meb_id, '-' as amount, t.curr_id as curr_id, c.code as curcode, '-' as formula, t.amount as winloss, t.curr_rate_1 as currate, t.payer_2 as account,t.remark as description FROM transaction t, currency c, account a, project p where t.project_id=p.id and t.curr_id=c.id and t.ag_id='$id' and t.hidden ='0'  and t.curr_id='$curr' $filter_sql";
 		}
 
 		$query=$this->db->query($sql);

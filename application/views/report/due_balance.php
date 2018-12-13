@@ -59,7 +59,7 @@
 										<th width="80px" class="text-center">Edit</th>
 										<th width="160px" class="text-center">Name</th>
 										<th width="100px" class="text-center">Contact No.</th>
-										<th width="120px" class="text-center">Account Ref.</th>
+										<th width="250px" class="text-center">Bank Detail or Definition</th>
 										<th class="text-center">Remarks</th>
 									</tr>
 								</thead>

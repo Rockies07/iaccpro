@@ -603,7 +603,7 @@
 			journal = 1;
 		}
 
-		if(code!="" && password!="")
+		if((id<=0 && password!='' && code!='') || (id>0 && code!=''))
 		{
 			console.log('res 11 '+id);
 			$.ajax({

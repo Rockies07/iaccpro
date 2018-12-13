@@ -297,7 +297,7 @@
 		var contact=$("#contact").val();
 		var bank_acc_info=$("#bank_acc_info").val();
 		var remark=$("#remark").val();
-		if(code!="" && password!="")
+		if((id<=0 && password!='' && code!='') || (id>0 && code!=''))
 		{
 			$.ajax({
 		        type:"POST",
