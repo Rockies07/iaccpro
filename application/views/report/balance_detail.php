@@ -102,7 +102,7 @@
 										<th width="150px" class="text-center">Date</th>
 										<th width="120px">Project</th>
 										<th width="120px">URL</th>
-										<th width="120px">ID</th>
+										<th width="250px">Content ID</th>
 										<th width="150px" class="text-center">Due Balance</th>
 										<th width="180px" class="text-center">Formula</th>
 										<th width="150px" class="text-center">Payment</th>
@@ -160,7 +160,10 @@
 													</td>
 													<td class="text-center">
 														<?php 
-															echo "(".$row->amount."*".$row->ppt."%*-1)".$row->formula; 
+															if($row->formula!="")
+															{
+																echo $row->amount.$row->formula; 
+															}
 														?>
 													</td>
 													<td class="text-center">
@@ -205,7 +208,7 @@
 										<td colspan = "14" class="text-right">&nbsp;</td>
 									</tr>
 									<tr>
-										<td colspan = "5" class="text-right"><strong>Currency Name</strong></td>
+										<td colspan = "5" class="text-right"><strong>Currency</strong></td>
 										<td class="text-center"><strong>Total</strong></td>
 										<td colspan = "8" class="text-center">&nbsp;</td>
 									</tr>
@@ -285,7 +288,7 @@
 						</div>
 						<div class="row">
 							<div class="form-group">
-								<label class="control-label col-md-4 font-sm">ID <font color='red'>*</font></label>
+								<label class="control-label col-md-4 font-sm">Content ID <font color='red'>*</font></label>
 								<div class="col-md-5">
 									<input type="hidden" id="member_id_str" name="member_id_str">
 									<select class="form-control input-sm select2me member_id" name="member_id" id="member_id">

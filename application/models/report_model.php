@@ -98,6 +98,7 @@ class Report_model extends CI_Model
 
 		$this->db->where('t.hidden','0');
 		$this->db->having('amount !=','0');
+		$this->db->group_by('c.code','ASC');
 		$query=$this->db->get($this->table_name.' as t');
 
 		return $query->result();
